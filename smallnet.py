@@ -10,11 +10,15 @@ from torch import optim
 import numpy as np
 
 batch_size = 199
-learning_rate = 1e-2
+learning_rate = 1e-1
 num_epoches = 20
 
 train_dataset = datasets.MNIST(
     root='./data', train=True, transform=transforms.ToTensor(), download=True)
+# print(train_dataset)
+
+# train_dataset = torch.utils.data.random_split(train_dataset, [5000, len(train_dataset)-5000])[0]
+# print(len(train_dataset))
 
 test_dataset = datasets.MNIST(
     root='./data', train=False, transform=transforms.ToTensor())
@@ -31,6 +35,7 @@ class LeNet(nn.Module):
         self.fc1 = nn.Linear(50*4*4, 500)
         self.fc2 = nn.Linear(500, 84)
         self.fc3 = nn.Linear(84, 10)
+
     def forward(self, x):
         x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2)) # 12
         x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2)) # 4
@@ -38,6 +43,7 @@ class LeNet(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
+        x = torch.sigmoid(x)
         return x
     def num_flat_features(self, x):
         size = x.size()[1:]  # all dimensions except the batch dimension
@@ -63,6 +69,7 @@ class Mini1(nn.Module):
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
+        x = torch.sigmoid(x)
         return x
 
     def num_flat_features(self, x):
@@ -89,6 +96,7 @@ class Mini2(nn.Module):
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
+        x = torch.sigmoid(x)
         return x
 
     def num_flat_features(self, x):
@@ -114,6 +122,7 @@ class Mini3(nn.Module):
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
+        x = torch.sigmoid(x)
         return x
 
     def num_flat_features(self, x):
@@ -139,6 +148,7 @@ class Mini4(nn.Module):
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
+        x = torch.sigmoid(x)
         return x
 
     def num_flat_features(self, x):
@@ -162,6 +172,7 @@ class Mini5(nn.Module):
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
+        x = torch.sigmoid(x)
         return x
 
     def num_flat_features(self, x):
@@ -185,6 +196,7 @@ class Mini6(nn.Module):
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
+        x = torch.sigmoid(x)
         return x
 
     def num_flat_features(self, x):
@@ -208,6 +220,7 @@ class Mini7(nn.Module):
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
+        x = torch.sigmoid(x)
         return x
 
     def num_flat_features(self, x):
@@ -231,6 +244,7 @@ class Mini8(nn.Module):
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
+        x = torch.sigmoid(x)
         return x
 
     def num_flat_features(self, x):
@@ -240,7 +254,7 @@ class Mini8(nn.Module):
             num_features *= s
         return num_features
 net = LeNet()
-net.load_state_dict(torch.load('LeNet.pth'))
+# net.load_state_dict(torch.load('LeNet.pth'))
 # print(net)
 
 net = net.cuda()
@@ -287,6 +301,7 @@ for data in test_loader:
     img = Variable(img, volatile=True).cuda()
     label = Variable(label, volatile=True).cuda()
     out = net(img)
+    # print(out)
     loss = criterion(out, label)
     eval_loss += loss.data.item() * label.size(0)
     _, pred = torch.max(out, 1)
