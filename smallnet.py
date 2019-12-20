@@ -9,8 +9,8 @@ from torchvision import datasets
 from torch import optim
 import numpy as np
 
-batch_size = 128
-learning_rate = 1e-4
+batch_size = 199
+learning_rate = 1e-2
 num_epoches = 20
 
 train_dataset = datasets.MNIST(
@@ -239,8 +239,8 @@ class Mini8(nn.Module):
         for s in size:
             num_features *= s
         return num_features
-net = Mini8()
-net.load_state_dict(torch.load('cnn.pth'))
+net = LeNet()
+net.load_state_dict(torch.load('LeNet.pth'))
 # print(net)
 
 net = net.cuda()
@@ -296,4 +296,4 @@ print('Test Loss: {:.6f}, Acc: {:.6f}'.format(eval_loss / (len(test_dataset)), e
 print()
 
 # 保存模型
-torch.save(net.state_dict(), './cnn.pth')
+torch.save(net.state_dict(), './LeNet.pth')
