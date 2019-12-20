@@ -12,15 +12,15 @@ import sys
 sys.path.append('D:\wyx\Tradeoff-of-light-and-big-DNN\model')
 from smallnet import *
 
-batch_size = 199
-learning_rate = 1e-2
-num_epoches = 20
+batch_size = 200
+learning_rate = 1e-1
+num_epoches = 40
 
 train_dataset = datasets.MNIST(
     root='./data', train=True, transform=transforms.ToTensor(), download=True)
 # print(train_dataset)
 
-# train_dataset = torch.utils.data.random_split(train_dataset, [5000, len(train_dataset)-5000])[0]
+train_dataset = torch.utils.data.random_split(train_dataset, [60000, len(train_dataset)-60000])[0]
 # print(len(train_dataset))
 
 test_dataset = datasets.MNIST(
@@ -30,8 +30,8 @@ train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 
-net = Mini1()
-# net.load_state_dict(torch.load('weights/Mini1.pth'))
+net = Mini2()
+net.load_state_dict(torch.load('weights/Mini2_60000.pth'))
 # print(net)
 
 net = net.cuda()
@@ -88,4 +88,4 @@ print('Test Loss: {:.6f}, Acc: {:.6f}'.format(eval_loss / (len(test_dataset)), e
 print()
 
 # 保存模型
-torch.save(net.state_dict(), '.weights/Mini1.pth')
+torch.save(net.state_dict(), 'weights/Mini2_60000.pth')
