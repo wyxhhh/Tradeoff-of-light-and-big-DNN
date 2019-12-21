@@ -16,16 +16,24 @@ class LeNet(nn.Module):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 20, 5)
         self.conv2 = nn.Conv2d(20, 50, 5)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(50*4*4, 500)
         self.fc2 = nn.Linear(500, 84)
         self.fc3 = nn.Linear(84, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2)) # 12
-        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2)) # 4
+        x = self.conv1(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
+        x = self.conv2(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
+        x = self.fc2(x)
+        x = self.relu1(x)
         x = self.fc3(x)
         x = torch.sigmoid(x)
         return x
@@ -37,21 +45,28 @@ class LeNet(nn.Module):
         return num_features
 
 
-#summary(LeNet().cuda(), input_size=(1, 28, 28))
+# summary(LeNet().cuda(), input_size=(1, 28, 28))
 
 class Mini1(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 10, 5)
         self.conv2 = nn.Conv2d(10, 25, 5)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(4*4*25, 250)
         self.fc2 = nn.Linear(250, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2)) # 12*12*10
-        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2)) # 4*4*25
+        x = self.conv1(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
+        x = self.conv2(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
         x = self.fc2(x)
         x = torch.sigmoid(x)
         return x
@@ -71,14 +86,21 @@ class Mini2(nn.Module):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 7, 5)
         self.conv2 = nn.Conv2d(7, 15, 5)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(4*4*15, 150)
         self.fc2 = nn.Linear(150, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2)) # 12*12*7
-        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2)) # 4*4*15
+        x = self.conv1(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
+        x = self.conv2(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
         x = self.fc2(x)
         x = torch.sigmoid(x)
         return x
@@ -97,14 +119,21 @@ class Mini3(nn.Module):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 2, 5)
         self.conv2 = nn.Conv2d(2, 5, 5)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(4*4*5, 50)
         self.fc2 = nn.Linear(50, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2)) # 12*12*2
-        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2)) # 4*4*5
+        x = self.conv1(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
+        x = self.conv2(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
         x = self.fc2(x)
         x = torch.sigmoid(x)
         return x
@@ -123,14 +152,21 @@ class Mini4(nn.Module):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 2, 2)
         self.conv2 = nn.Conv2d(2, 5, 2)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(6*6*5, 50)
         self.fc2 = nn.Linear(50, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2)) # 13*13*2
-        x = F.max_pool2d(F.relu(self.conv2(x)), (2, 2)) # 4*4*5
+        x = self.conv1(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
+        x = self.conv2(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
         x = self.fc2(x)
         x = torch.sigmoid(x)
         return x
@@ -148,13 +184,18 @@ class Mini5(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv = nn.Conv2d(1, 20, 5)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(12*12*20, 500)
         self.fc2 = nn.Linear(500, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv(x)), (2, 2)) # 12*12*2
+        x = self.conv(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x) # 12*12*2
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
         x = self.fc2(x)
         x = torch.sigmoid(x)
         return x
@@ -172,13 +213,18 @@ class Mini6(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv = nn.Conv2d(1, 10, 5)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(12*12*10, 250)
         self.fc2 = nn.Linear(250, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv(x)), (2, 2)) # 12*12*2
+        x = self.conv(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
         x = self.fc2(x)
         x = torch.sigmoid(x)
         return x
@@ -190,19 +236,24 @@ class Mini6(nn.Module):
             num_features *= s
         return num_features
 
-#summary(Mini6().cuda(), input_size=(1, 28, 28))
+summary(Mini6().cuda(), input_size=(1, 28, 28))
 
 class Mini7(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv = nn.Conv2d(1, 10, 5,  stride=2)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(6*6*10, 250)
         self.fc2 = nn.Linear(250, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv(x)), (2, 2)) # 6*6*10
+        x = self.conv(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
         x = self.fc2(x)
         x = torch.sigmoid(x)
         return x
@@ -220,13 +271,19 @@ class Mini8(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv = nn.Conv2d(1, 10, 5, stride=4)
+        self.relu1 = nn.ReLU()
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         self.fc1 = nn.Linear(3*3*10, 250)
         self.fc2 = nn.Linear(250, 10)
 
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv(x)), (2, 2)) # 3*3*10
+        x = self.conv(x)
+        x = self.relu1(x)
+        x = self.maxpool1(x)
+        # x = nn.MaxPool2d(nn.ReLU(self.conv(x)), (2, 2)) # 3*3*10
         x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
+        x = self.fc1(x)
+        x = self.relu1(x)
         x = self.fc2(x)
         x = torch.sigmoid(x)
         return x
