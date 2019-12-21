@@ -32,3 +32,4 @@ Mini2_30000 Test Loss: 1.480499, Acc: 0.980200
 Mini2_40000 Test Loss: 1.477009, Acc: 0.983500
 Mini2_50000 Test Loss: 1.476289, Acc: 0.984000
 Mini2_60000 Test Loss: 1.473091, Acc: 0.987300
+
