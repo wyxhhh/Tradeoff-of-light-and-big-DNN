@@ -26,7 +26,7 @@ train_dataset = torch.utils.data.random_split(train_dataset, [10000, len(train_d
 test_dataset = datasets.MNIST(
     root='./data', train=False, transform=transforms.ToTensor())
 
-test_dataset = torch.utils.data.random_split(test_dataset, [100, len(test_dataset)-100])[0]
+# test_dataset = torch.utils.data.random_split(test_dataset, [100, len(test_dataset)-100])[0]
 
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
@@ -262,6 +262,7 @@ class Mini8(nn.Module):
 # decide the small network
 net = Mini8()
 n = 8
+m = 10000
 net.load_state_dict(torch.load('D:\Overwatch\weights/MINI8_10000.pth'))
 net = net.cuda()
 
@@ -306,11 +307,11 @@ optimizer = optim.SGD(net.parameters(), lr=learning_rate)
 #                 running_acc / (batch_size * i)))
 net.eval()
 net1.eval()
-name = "training_data_Mini"+str(n)+".txt"
+name = "training_data_Mini"+str(n)+'_'+str(m)+".txt"
 
 f = open(name, 'w')
 lamda = 0.1
-ita = [0.05*i for i in range(1, 21)]
+ita = [0.02*i for i in range(1, 51)]
 ac = list()
 
 # [out--10D, complexity-2D, data-1D, small_net_result-1D, Acc-1D, frequency-1D]
@@ -352,9 +353,10 @@ for z in ita:
         num_correct = (pred == label).sum()
         eval_acc += num_correct.data.item()
         # w.append(wr)
+    print(eval_acc/len(test_dataset) - lamda * fre/len(test_dataset))
     ac.append((eval_acc/len(test_dataset) - lamda * fre/len(test_dataset)))
 print(ac, ac.index(max(ac)))
-y = 0.05*(ac.index(max(ac))+1)
+y = 0.02*(ac.index(max(ac))+1)
 w = list()
 fre = 0
 eval_loss = 0
@@ -369,7 +371,7 @@ for data in test_loader:
         wr.append(float(out[0][i]))
     wr.append(int(complexi[n-1][0]))
     wr.append(int(complexi[n-1][1]))
-    wr.append(10000)
+    wr.append(m)
     loss = criterion(out, label)
     _, pr = torch.max(out, 1)
     if (pr != label):
