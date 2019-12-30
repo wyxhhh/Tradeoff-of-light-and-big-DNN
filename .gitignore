@@ -2,3 +2,4 @@
 *.pth
 *-ubyte
 eval.py 
+.txt
