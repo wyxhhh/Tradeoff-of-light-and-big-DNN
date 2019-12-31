@@ -2,4 +2,5 @@
 *.pth
 *-ubyte
 eval.py 
-.txt
+*.txt
+*.csv
