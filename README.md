@@ -8,3 +8,5 @@ Download mini1-2 : https://jbox.sjtu.edu.cn/l/KnHzFd
 Download mini3-5 : https://jbox.sjtu.edu.cn/l/noXqmh
 
 training data in csv: https://jbox.sjtu.edu.cn/l/L04d4B
+
+current models: https://jbox.sjtu.edu.cn/l/fJ6wEP
