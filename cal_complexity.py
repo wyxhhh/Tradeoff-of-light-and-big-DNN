@@ -295,6 +295,7 @@ class Mini8(nn.Module):
             num_features *= s
         return num_features
 
+# print out the list of complexity vector 
 lp = list()
 
 net1 = Mini1()
