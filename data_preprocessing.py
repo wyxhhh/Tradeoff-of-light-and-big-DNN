@@ -98,6 +98,8 @@ w = list()
 fre = 0
 eval_loss = 0
 eval_acc = 0
+
+# use trained small network to generate train set for determiner
 for data in test_loader:
     wr = list()
     img, label = data
