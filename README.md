@@ -20,7 +20,7 @@
 | Name           | Mini5(m5)                   | Mini6(m6)                   | Mini7(m7)                             | Mini8(m8)                             |
 |----------------|-----------------------------|-----------------------------|---------------------------------------|---------------------------------------|
 | Input          | 28 × 28                | 28 × 28                | 28 × 28                          | 28 × 28                          |
-|                | Conv2d 5 × 5 × 20 | Conv2d 5 × 5 × 10 | Conv2d 5 × 5 × 10, stride 2 | Conv2d 5 × 5 × 10, stride 2 |
+|                | Conv2d 5×5×20 | Conv2d 5×5×10 | Conv2d 5×5×10, stride 2 | Conv2d 5×5×10, stride 2 |
 |                | MaxPool2d 2 × 2        | MaxPool2d 2 × 2        | MaxPool2d 2 × 2                  | MaxPool2d 2 × 2                  |
 |                | Linear 500                  | Linear 250                  | Linear 250                            | Linear 250                            |
 |                | Linear 10                   | Linear 10                   | Linear 10                             | Linear 10                             |
