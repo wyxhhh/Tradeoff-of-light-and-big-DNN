@@ -20,7 +20,8 @@ def trainval(batch_size, learning_rate, num_epoches):
 
     train_dataset = datasets.MNIST(
         root='./data', train=True, transform=transforms.ToTensor(), download=True)
-
+    
+    # use different size of train set for training
     train_dataset = torch.utils.data.random_split(train_dataset, [60000, len(train_dataset)-60000])[0]
 
     test_dataset = datasets.MNIST(
