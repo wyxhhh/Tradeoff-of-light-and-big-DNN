@@ -31,7 +31,7 @@ def trainval(batch_size, learning_rate, num_epoches):
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     net = Mini5()
-    net.load_state_dict(torch.load('weights/Mini5_60000.pth'))
+    # net.load_state_dict(torch.load('weights/Mini5_60000.pth'))
     # print(net)
 
     net = net.cuda()

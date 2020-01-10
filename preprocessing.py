@@ -15,7 +15,7 @@ p = 0.5
 
 for n in range(1, 9):
     for m in range(10000, 70000, 10000):
-        name = "./training/training_data_Mini"+str(n)+'_'+str(m)+".txt"
+        name = "./weights/training_data_Mini"+str(n)+'_'+str(m)+".txt"
         f = open(name, 'r')
         y = list()
         while True:
