@@ -27,6 +27,8 @@ x2, y2 = x1.iloc[:, :13], x1.iloc[:, 13]
 y2 = y2*100
 
 x_train, x_test, y_train, y_test = train_test_split(x2, y2, test_size=0.2, random_state=1)
+
+# search for the best parameters
 # mi = 1000
 # result = []
 # for i in range(12, 22):
@@ -41,6 +43,7 @@ x_train, x_test, y_train, y_test = train_test_split(x2, y2, test_size=0.2, rando
 #                 mi = mse
 #                 result = [i, j, k]
 # print(mi, result)
+
 clf = DecisionTreeRegressor(max_depth=17, min_samples_split=15, min_samples_leaf=6)
 clf.fit(x_train, y_train)
 
