@@ -1,6 +1,6 @@
 # Trade-off Between Energy Consuming and Accuracy
 
- We propose a machine learning based determiner that receives the outcomes of classification layer of small networks combined with data set size and complexity of small network in order to make the determiner generalized. Gradient-Boost Decision Tree (GBDT), Random Forest and Decision Tree are considered in determiner selection. It achieves 98.19% accuracy with penalty on calling the big network (i.e.,Acc − \lambda f), which is1.21% better than the traditional method.
+ We propose a machine learning based determiner that receives the outcomes of classification layer of small networks combined with data set size and complexity of small network in order to make the determiner generalized. Gradient-Boost Decision Tree (GBDT), Random Forest and Decision Tree are considered in determiner selection. It achieves 98.19% accuracy with penalty on calling the big network (i.e.,Acc − λf), which is1.21% better than the traditional method.
 
 ## Configurations for Networks
 | Name           | LeNet                       | Mini1(m1)                   | Mini2(m2)                   | Mini3(m3)                  | MIni4(m4) |
