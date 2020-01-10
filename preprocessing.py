@@ -4,6 +4,7 @@ import numpy as np
 import random
 
 
+# a process for converting raw data to csv. format which can be used directly for training 
 header = ["class1", "class2", "class3", "class4", "class5", "class6", "class7", "class8", "class9", "class10", "comp1", "comp2", "size", "score", "label"]
 qfile = 'training_data.csv'
 f = open(qfile, "w", newline='')
@@ -25,6 +26,7 @@ for n in range(1, 9):
             x = list()
             for i in range(10):
                 x.append(li[i])
+            # the normalization step
             x.append(li[10]/668830.0)
             x.append(li[11]/109295.0)
             x.append(li[12]/60000.0)
