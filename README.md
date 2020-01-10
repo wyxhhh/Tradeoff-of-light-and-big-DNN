@@ -6,9 +6,9 @@
 | Name           | LeNet                       | Mini1(m1)                   | Mini2(m2)                   | Mini3(m3)                  | MIni4(m4) |
 |----------------|-----------------------------|-----------------------------|-----------------------------|----------------------------|----------------------------|
 | Input          | 28 × 28                | 28 × 28                | 28 × 28                | 28 × 28               | 28 × 28               |
-|                | Conv2d 5 × 5 × 20 | Conv2d 5 × 5 × 10 | Conv2d 5 × 5 × 7  | Conv2d 5 × 5 × 2 | Conv2d 2 × 2 × 2 |
+|                | Conv2d 5× 5×20 | Conv2d 5×5×10 | Conv2d 5×5×7  | Conv2d 5×5×2 | Conv2d 2×2×2 |
 |                | MaxPool2d 2 × 2        | MaxPool2d 2 × 2        | MaxPool2d 2 × 2        | MaxPool2d 2 × 2       | MaxPool2d 2 × 2       |
-|                | Conv2d 5 × 5 × 50 | Conv2d 5 × 5 × 25 | Conv2d 5 × 5 × 15 | Conv2d 5 × 5 × 5 | Conv2d 2 × 2 × 5 |
+|                | Conv2d 5×5×50 | Conv2d 5×5×25 | Conv2d 5×5×15 | Conv2d 5×5×5 | Conv2d 2×2×5 |
 |                | MaxPool2d 2 × 2        | MaxPool2d 2 × 2        | MaxPool2d 2 × 2        | MaxPool2d 2 × 2       | MaxPool2d 2 × 2       |
 |                | Linear 500                  | Linear 250                  | Linear 150                  | Linear 50                  | Linear 50                  |
 |                | Linear 84                   | Linear 10                   | Linear 10                   | Linear 10                  | Linear 10                  |
